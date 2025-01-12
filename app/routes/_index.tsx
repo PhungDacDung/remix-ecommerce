@@ -1,138 +1,699 @@
 import type { MetaFunction } from "@remix-run/node";
+import Footer from "~/components/Footer";
+import Navbar from "~/components/Navbar";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
+    { title: "Minishop" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
 
 export default function Index() {
+  console.log("home");
+
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="flex flex-col items-center gap-16">
-        <header className="flex flex-col items-center gap-9">
-          <h1 className="leading text-2xl font-bold text-gray-800 dark:text-gray-100">
-            Welcome to <span className="sr-only">Remix</span>
-          </h1>
-          <div className="h-[144px] w-[434px]">
-            <img
-              src="/logo-light.png"
-              alt="Remix"
-              className="block w-full dark:hidden"
-            />
-            <img
-              src="/logo-dark.png"
-              alt="Remix"
-              className="hidden w-full dark:block"
-            />
+    <>
+      <section id="home-section" className="hero">
+        <div className="home-slider owl-carousel">
+          <div className="slider-item js-fullheight">
+            <div className="overlay"></div>
+            <div className="container-fluid p-0">
+              <div className="row d-md-flex no-gutters slider-text align-items-center justify-content-end"
+                data-scrollax-parent="true">
+                <img className="one-third order-md-last img-fluid" src="/images/bg_1.png" alt="" />
+                <div className="one-forth d-flex align-items-center ftco-animate"
+                  data-scrollax=" properties: { translateY: '70%' }">
+                  <div className="text">
+                    <span className="subheading">#New Arrival</span>
+                    <div className="horizontal">
+                      <h1 className="mb-4 mt-3">Shoes Collection 2019</h1>
+                      <p className="mb-4">A small river named Duden flows by their place and supplies it with
+                        the necessary regelialia. It is a paradisematic country.</p>
+
+                      <p><a href="#" className="btn-custom">Discover Now</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </header>
-        <nav className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
-          <p className="leading-6 text-gray-700 dark:text-gray-200">
-            What&apos;s next?
-          </p>
-          <ul>
-            {resources.map(({ href, text, icon }) => (
-              <li key={href}>
-                <a
-                  className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {icon}
-                  {text}
+
+          <div className="slider-item js-fullheight">
+            <div className="overlay"></div>
+            <div className="container-fluid p-0">
+              <div className="row d-flex no-gutters slider-text align-items-center justify-content-end"
+                data-scrollax-parent="true">
+                <img className="one-third order-md-last img-fluid" src="/images/bg_2.png" alt="" />
+                <div className="one-forth d-flex align-items-center ftco-animate"
+                  data-scrollax=" properties: { translateY: '70%' }">
+                  <div className="text">
+                    <span className="subheading">#New Arrival</span>
+                    <div className="horizontal">
+                      <h1 className="mb-4 mt-3">New Shoes Winter Collection</h1>
+                      <p className="mb-4">A small river named Duden flows by their place and supplies it with
+                        the necessary regelialia. It is a paradisematic country.</p>
+
+                      <p><a href="#" className="btn-custom">Discover Now</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="ftco-section ftco-no-pt ftco-no-pb">
+        <div className="container">
+          <div className="row no-gutters ftco-services">
+            <div className="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
+              <div className="media block-6 services p-4 py-md-5">
+                <div className="icon d-flex justify-content-center align-items-center mb-4">
+                  <span className="flaticon-bag"></span>
+                </div>
+                <div className="media-body">
+                  <h3 className="heading">Free Shipping</h3>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                    there live the blind texts.</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
+              <div className="media block-6 services p-4 py-md-5">
+                <div className="icon d-flex justify-content-center align-items-center mb-4">
+                  <span className="flaticon-customer-service"></span>
+                </div>
+                <div className="media-body">
+                  <h3 className="heading">Support Customer</h3>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                    there live the blind texts.</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4 text-center d-flex align-self-stretch ftco-animate">
+              <div className="media block-6 services p-4 py-md-5">
+                <div className="icon d-flex justify-content-center align-items-center mb-4">
+                  <span className="flaticon-payment-security"></span>
+                </div>
+                <div className="media-body">
+                  <h3 className="heading">Secure Payments</h3>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                    there live the blind texts.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="ftco-section bg-light">
+        <div className="container">
+          <div className="row justify-content-center mb-3 pb-3">
+            <div className="col-md-12 heading-section text-center ftco-animate">
+              <h2 className="mb-4">New Shoes Arrival</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+              <div className="product d-flex flex-column">
+                <a href="/product/detail/1" className="img-prod"><img className="img-fluid" src="images/product-1.png"
+                  alt="Colorlib Template" />
+                  <div className="overlay"></div>
                 </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </div>
+                <div className="text py-3 pb-4 px-3">
+                  <div className="d-flex">
+                    <div className="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div className="rating">
+                      <p className="text-right mb-0">
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="/product/detail/1">Nike Free RN 2019 iD</a></h3>
+                  <div className="pricing">
+                    <p className="price"><span>$120.00</span></p>
+                  </div>
+                  <p className="bottom-area d-flex px-3">
+                    <a href="/cart" className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                      className="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" className="buy-now text-center py-2">Buy now<span><i
+                      className="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+              <div className="product d-flex flex-column">
+                <a href="/product/detail/1" className="img-prod"><img className="img-fluid" src="images/product-2.png"
+                  alt="Colorlib Template" />
+                  <span className="status">50% Off</span>
+                  <div className="overlay"></div>
+                </a>
+                <div className="text py-3 pb-4 px-3">
+                  <div className="d-flex">
+                    <div className="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div className="rating">
+                      <p className="text-right mb-0">
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="/product/detail/1">Nike Free RN 2019 iD</a></h3>
+                  <div className="pricing">
+                    <p className="price"><span className="mr-2 price-dc">$120.00</span><span
+                      className="price-sale">$80.00</span></p>
+                  </div>
+                  <p className="bottom-area d-flex px-3">
+                    <a href="#" className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                      className="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" className="buy-now text-center py-2">Buy now<span><i
+                      className="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+              <div className="product">
+                <a href="#" className="img-prod"><img className="img-fluid" src="images/product-3.png"
+                  alt="Colorlib Template" />
+                  <div className="overlay"></div>
+                </a>
+                <div className="text py-3 pb-4 px-3">
+                  <div className="d-flex">
+                    <div className="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div className="rating">
+                      <p className="text-right mb-0">
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                  <div className="pricing">
+                    <p className="price"><span>$120.00</span></p>
+                  </div>
+                  <p className="bottom-area d-flex px-3">
+                    <a href="#" className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                      className="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" className="buy-now text-center py-2">Buy now<span><i
+                      className="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+              <div className="product">
+                <a href="#" className="img-prod"><img className="img-fluid" src="images/product-4.png"
+                  alt="Colorlib Template" />
+                  <div className="overlay"></div>
+                </a>
+                <div className="text py-3 pb-4 px-3">
+                  <div className="d-flex">
+                    <div className="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div className="rating">
+                      <p className="text-right mb-0">
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                  <div className="pricing">
+                    <p className="price"><span>$120.00</span></p>
+                  </div>
+                  <p className="bottom-area d-flex px-3">
+                    <a href="#" className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                      className="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" className="buy-now text-center py-2">Buy now<span><i
+                      className="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+              <div className="product d-flex flex-column">
+                <a href="#" className="img-prod"><img className="img-fluid" src="images/product-5.png"
+                  alt="Colorlib Template" />
+                  <div className="overlay"></div>
+                </a>
+                <div className="text py-3 pb-4 px-3">
+                  <div className="d-flex">
+                    <div className="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div className="rating">
+                      <p className="text-right mb-0">
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                  <div className="pricing">
+                    <p className="price"><span>$120.00</span></p>
+                  </div>
+                  <p className="bottom-area d-flex px-3">
+                    <a href="#" className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                      className="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" className="buy-now text-center py-2">Buy now<span><i
+                      className="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+              <div className="product d-flex flex-column">
+                <a href="#" className="img-prod"><img className="img-fluid" src="images/product-6.png"
+                  alt="Colorlib Template" />
+                  <span className="status">50% Off</span>
+                  <div className="overlay"></div>
+                </a>
+                <div className="text py-3 pb-4 px-3">
+                  <div className="d-flex">
+                    <div className="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div className="rating">
+                      <p className="text-right mb-0">
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                  <div className="pricing">
+                    <p className="price"><span className="mr-2 price-dc">$120.00</span><span
+                      className="price-sale">$80.00</span></p>
+                  </div>
+                  <p className="bottom-area d-flex px-3">
+                    <a href="#" className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                      className="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" className="buy-now text-center py-2">Buy now<span><i
+                      className="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+              <div className="product">
+                <a href="#" className="img-prod"><img className="img-fluid" src="images/product-7.png"
+                  alt="Colorlib Template" />
+                  <div className="overlay"></div>
+                </a>
+                <div className="text py-3 pb-4 px-3">
+                  <div className="d-flex">
+                    <div className="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div className="rating">
+                      <p className="text-right mb-0">
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                  <div className="pricing">
+                    <p className="price"><span>$120.00</span></p>
+                  </div>
+                  <p className="bottom-area d-flex px-3">
+                    <a href="#" className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                      className="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" className="buy-now text-center py-2">Buy now<span><i
+                      className="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+              <div className="product">
+                <a href="#" className="img-prod"><img className="img-fluid" src="images/product-8.png"
+                  alt="Colorlib Template" />
+                  <div className="overlay"></div>
+                </a>
+                <div className="text py-3 pb-4 px-3">
+                  <div className="d-flex">
+                    <div className="cat">
+                      <span>Lifestyle</span>
+                    </div>
+                    <div className="rating">
+                      <p className="text-right mb-0">
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                        <a href="#"><span className="ion-ios-star-outline"></span></a>
+                      </p>
+                    </div>
+                  </div>
+                  <h3><a href="#">Nike Free RN 2019 iD</a></h3>
+                  <div className="pricing">
+                    <p className="price"><span>$120.00</span></p>
+                  </div>
+                  <p className="bottom-area d-flex px-3">
+                    <a href="#" className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                      className="ion-ios-add ml-1"></i></span></a>
+                    <a href="#" className="buy-now text-center py-2">Buy now<span><i
+                      className="ion-ios-cart ml-1"></i></span></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section className="ftco-section ftco-choose ftco-no-pb ftco-no-pt">
+        <div className="container">
+          <div className="row no-gutters">
+            <div className="col-lg-4">
+              <div className="choose-wrap divider-one img p-5 d-flex align-items-end"
+                style={{ backgroundImage: "url('/images/choose-1.jpg')" }}>
+
+                <div className="text text-center text-white px-2">
+                  <span className="subheading">Men's Shoes</span>
+                  <h2>Men's Collection</h2>
+                  <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                    language ocean.</p>
+                  <p><a href="#" className="btn btn-black px-3 py-2">Shop now</a></p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-8">
+              <div className="row no-gutters choose-wrap divider-two align-items-stretch">
+                <div className="col-md-12">
+                  <div className="choose-wrap full-wrap img align-self-stretch d-flex align-item-center justify-content-end"
+                    style={{ backgroundImage: "url('/images/choose-2.jpg')" }}>
+                    <div className="col-md-7 d-flex align-items-center">
+                      <div className="text text-white px-5">
+                        <span className="subheading">Women's Shoes</span>
+                        <h2>Women's Collection</h2>
+                        <p>Separated they live in Bookmarksgrove right at the coast of the Semantics, a
+                          large language ocean.</p>
+                        <p><a href="#" className="btn btn-black px-3 py-2">Shop now</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="row no-gutters">
+                    <div className="col-md-6">
+                      <div
+                        className="choose-wrap wrap img align-self-stretch bg-light d-flex align-items-center">
+                        <div className="text text-center px-5">
+                          <span className="subheading">Summer Sale</span>
+                          <h2>Extra 50% Off</h2>
+                          <p>Separated they live in Bookmarksgrove right at the coast of the
+                            Semantics, a large language ocean.</p>
+                          <p><a href="#" className="btn btn-black px-3 py-2">Shop now</a></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="choose-wrap wrap img align-self-stretch d-flex align-items-center"
+                        style={{ backgroundImage: "url('/images/choose-3.jpg')" }}>
+                        <div className="text text-center text-white px-5">
+                          <span className="subheading">Shoes</span>
+                          <h2>Best Sellers</h2>
+                          <p>Separated they live in Bookmarksgrove right at the coast of the
+                            Semantics, a large language ocean.</p>
+                          <p><a href="#" className="btn btn-black px-3 py-2">Shop now</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="ftco-section ftco-deal bg-primary">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <img src="images/prod-1.png" className="img-fluid" alt="" />
+            </div>
+            <div className="col-md-6">
+              <div className="heading-section heading-section-white">
+                <span className="subheading">Deal of the month</span>
+                <h2 className="mb-3">Deal of the month</h2>
+              </div>
+              <div id="timer" className="d-flex mb-4">
+                <div className="time" id="days"></div>
+                <div className="time pl-4" id="hours"></div>
+                <div className="time pl-4" id="minutes"></div>
+                <div className="time pl-4" id="seconds"></div>
+              </div>
+              <div className="text-deal">
+                <h2><a href="#">Nike Free RN 2019 iD</a></h2>
+                <p className="price"><span className="mr-2 price-dc">$120.00</span><span
+                  className="price-sale">$80.00</span></p>
+                <ul className="thumb-deal d-flex mt-4">
+                  <li className="img" style={{ backgroundImage: "url('/images/product-6.png')" }}></li>
+                  <li className="img" style={{ backgroundImage: "url('/images/product-2.png')" }}></li>
+                  <li className="img" style={{ backgroundImage: "url('/images/product-4.png')" }}></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="ftco-section testimony-section">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-5">
+              <div className="services-flow">
+                <div className="services-2 p-4 d-flex ftco-animate">
+                  <div className="icon">
+                    <span className="flaticon-bag"></span>
+                  </div>
+                  <div className="text">
+                    <h3>Free Shipping</h3>
+                    <p className="mb-0">Separated they live in. A small river named Duden flows</p>
+                  </div>
+                </div>
+                <div className="services-2 p-4 d-flex ftco-animate">
+                  <div className="icon">
+                    <span className="flaticon-heart-box"></span>
+                  </div>
+                  <div className="text">
+                    <h3>Valuable Gifts</h3>
+                    <p className="mb-0">Separated they live in. A small river named Duden flows</p>
+                  </div>
+                </div>
+                <div className="services-2 p-4 d-flex ftco-animate">
+                  <div className="icon">
+                    <span className="flaticon-payment-security"></span>
+                  </div>
+                  <div className="text">
+                    <h3>All Day Support</h3>
+                    <p className="mb-0">Separated they live in. A small river named Duden flows</p>
+                  </div>
+                </div>
+                <div className="services-2 p-4 d-flex ftco-animate">
+                  <div className="icon">
+                    <span className="flaticon-customer-service"></span>
+                  </div>
+                  <div className="text">
+                    <h3>All Day Support</h3>
+                    <p className="mb-0">Separated they live in. A small river named Duden flows</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-7">
+              <div className="heading-section ftco-animate mb-5">
+                <h2 className="mb-4">Our satisfied customer says</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                  there live the blind texts. Separated they live in</p>
+              </div>
+              <div className="carousel-testimony owl-carousel">
+                <div className="item">
+                  <div className="testimony-wrap">
+                    <div className="user-img mb-4" style={{ backgroundImage: "url('/images/person_1.jpg')" }}>
+                      <span className="quote d-flex align-items-center justify-content-center">
+                        <i className="icon-quote-left"></i>
+                      </span>
+                    </div>
+                    <div className="text">
+                      <p className="mb-4 pl-4 line">Far far away, behind the word mountains, far from the
+                        countries Vokalia and Consonantia, there live the blind texts.</p>
+                      <p className="name">Garreth Smith</p>
+                      <span className="position">Marketing Manager</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="item">
+                  <div className="testimony-wrap">
+                    <div className="user-img mb-4" style={{ backgroundImage: "url('/images/person_2.jpg')" }}>
+                      <span className="quote d-flex align-items-center justify-content-center">
+                        <i className="icon-quote-left"></i>
+                      </span>
+                    </div>
+                    <div className="text">
+                      <p className="mb-4 pl-4 line">Far far away, behind the word mountains, far from the
+                        countries Vokalia and Consonantia, there live the blind texts.</p>
+                      <p className="name">Garreth Smith</p>
+                      <span className="position">Interface Designer</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="item">
+                  <div className="testimony-wrap">
+                    <div className="user-img mb-4" style={{ backgroundImage: "url('/images/person_3.jpg')" }}>
+                      <span className="quote d-flex align-items-center justify-content-center">
+                        <i className="icon-quote-left"></i>
+                      </span>
+                    </div>
+                    <div className="text">
+                      <p className="mb-4 pl-4 line">Far far away, behind the word mountains, far from the
+                        countries Vokalia and Consonantia, there live the blind texts.</p>
+                      <p className="name">Garreth Smith</p>
+                      <span className="position">UI Designer</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="item">
+                  <div className="testimony-wrap">
+                    <div className="user-img mb-4" style={{ backgroundImage: "url('/images/person_1.jpg')" }}>
+                      <span className="quote d-flex align-items-center justify-content-center">
+                        <i className="icon-quote-left"></i>
+                      </span>
+                    </div>
+                    <div className="text">
+                      <p className="mb-4 pl-4 line">Far far away, behind the word mountains, far from the
+                        countries Vokalia and Consonantia, there live the blind texts.</p>
+                      <p className="name">Garreth Smith</p>
+                      <span className="position">Web Developer</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="item">
+                  <div className="testimony-wrap">
+                    <div className="user-img mb-4" style={{ backgroundImage: "url('/images/person_1.jpg')" }}>
+                      <span className="quote d-flex align-items-center justify-content-center">
+                        <i className="icon-quote-left"></i>
+                      </span>
+                    </div>
+                    <div className="text">
+                      <p className="mb-4 pl-4 line">Far far away, behind the word mountains, far from the
+                        countries Vokalia and Consonantia, there live the blind texts.</p>
+                      <p className="name">Garreth Smith</p>
+                      <span className="position">System Analyst</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="ftco-gallery">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-8 heading-section text-center mb-4 ftco-animate">
+              <h2 className="mb-4">Follow Us On Instagram</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                live the blind texts. Separated they live in</p>
+            </div>
+          </div>
+        </div>
+        <div className="container-fluid px-0">
+          <div className="row no-gutters">
+            <div className="col-md-4 col-lg-2 ftco-animate">
+              <a href="images/gallery-1.jpg" className="gallery image-popup img d-flex align-items-center"
+                style={{ backgroundImage: "url('/images/gallery-1.jpg')" }}>
+                <div className="icon mb-4 d-flex align-items-center justify-content-center">
+                  <span className="icon-instagram"></span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-4 col-lg-2 ftco-animate">
+              <a href="images/gallery-2.jpg" className="gallery image-popup img d-flex align-items-center"
+                style={{ backgroundImage: "url('/images/gallery-2.jpg')" }}>
+                <div className="icon mb-4 d-flex align-items-center justify-content-center">
+                  <span className="icon-instagram"></span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-4 col-lg-2 ftco-animate">
+              <a href="images/gallery-3.jpg" className="gallery image-popup img d-flex align-items-center"
+                style={{ backgroundImage: "url('/images/gallery-3.jpg')" }}>
+                <div className="icon mb-4 d-flex align-items-center justify-content-center">
+                  <span className="icon-instagram"></span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-4 col-lg-2 ftco-animate">
+              <a href="images/gallery-4.jpg" className="gallery image-popup img d-flex align-items-center"
+                style={{ backgroundImage: "url('/images/gallery-4.jpg')" }}>
+                <div className="icon mb-4 d-flex align-items-center justify-content-center">
+                  <span className="icon-instagram"></span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-4 col-lg-2 ftco-animate">
+              <a href="images/gallery-5.jpg" className="gallery image-popup img d-flex align-items-center"
+                style={{ backgroundImage: "url('/images/gallery-5.jpg')" }}>
+                <div className="icon mb-4 d-flex align-items-center justify-content-center">
+                  <span className="icon-instagram"></span>
+                </div>
+              </a>
+            </div>
+            <div className="col-md-4 col-lg-2 ftco-animate">
+              <a href="images/gallery-6.jpg" className="gallery image-popup img d-flex align-items-center"
+                style={{ backgroundImage: "url('/images/gallery-6.jpg')" }}>
+                <div className="icon mb-4 d-flex align-items-center justify-content-center">
+                  <span className="icon-instagram"></span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
-const resources = [
-  {
-    href: "https://remix.run/start/quickstart",
-    text: "Quick Start (5 min)",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
-      >
-        <path
-          d="M8.51851 12.0741L7.92592 18L15.6296 9.7037L11.4815 7.33333L12.0741 2L4.37036 10.2963L8.51851 12.0741Z"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    href: "https://remix.run/start/tutorial",
-    text: "Tutorial (30 min)",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
-      >
-        <path
-          d="M4.561 12.749L3.15503 14.1549M3.00811 8.99944H1.01978M3.15503 3.84489L4.561 5.2508M8.3107 1.70923L8.3107 3.69749M13.4655 3.84489L12.0595 5.2508M18.1868 17.0974L16.635 18.6491C16.4636 18.8205 16.1858 18.8205 16.0144 18.6491L13.568 16.2028C13.383 16.0178 13.0784 16.0347 12.915 16.239L11.2697 18.2956C11.047 18.5739 10.6029 18.4847 10.505 18.142L7.85215 8.85711C7.75756 8.52603 8.06365 8.21994 8.39472 8.31453L17.6796 10.9673C18.0223 11.0653 18.1115 11.5094 17.8332 11.7321L15.7766 13.3773C15.5723 13.5408 15.5554 13.8454 15.7404 14.0304L18.1868 16.4767C18.3582 16.6481 18.3582 16.926 18.1868 17.0974Z"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    href: "https://remix.run/docs",
-    text: "Remix Docs",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
-      >
-        <path
-          d="M9.99981 10.0751V9.99992M17.4688 17.4688C15.889 19.0485 11.2645 16.9853 7.13958 12.8604C3.01467 8.73546 0.951405 4.11091 2.53116 2.53116C4.11091 0.951405 8.73546 3.01467 12.8604 7.13958C16.9853 11.2645 19.0485 15.889 17.4688 17.4688ZM2.53132 17.4688C0.951566 15.8891 3.01483 11.2645 7.13974 7.13963C11.2647 3.01471 15.8892 0.951453 17.469 2.53121C19.0487 4.11096 16.9854 8.73551 12.8605 12.8604C8.73562 16.9853 4.11107 19.0486 2.53132 17.4688Z"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    href: "https://rmx.as/discord",
-    text: "Join Discord",
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="20"
-        viewBox="0 0 24 20"
-        fill="none"
-        className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
-      >
-        <path
-          d="M15.0686 1.25995L14.5477 1.17423L14.2913 1.63578C14.1754 1.84439 14.0545 2.08275 13.9422 2.31963C12.6461 2.16488 11.3406 2.16505 10.0445 2.32014C9.92822 2.08178 9.80478 1.84975 9.67412 1.62413L9.41449 1.17584L8.90333 1.25995C7.33547 1.51794 5.80717 1.99419 4.37748 2.66939L4.19 2.75793L4.07461 2.93019C1.23864 7.16437 0.46302 11.3053 0.838165 15.3924L0.868838 15.7266L1.13844 15.9264C2.81818 17.1714 4.68053 18.1233 6.68582 18.719L7.18892 18.8684L7.50166 18.4469C7.96179 17.8268 8.36504 17.1824 8.709 16.4944L8.71099 16.4904C10.8645 17.0471 13.128 17.0485 15.2821 16.4947C15.6261 17.1826 16.0293 17.8269 16.4892 18.4469L16.805 18.8725L17.3116 18.717C19.3056 18.105 21.1876 17.1751 22.8559 15.9238L23.1224 15.724L23.1528 15.3923C23.5873 10.6524 22.3579 6.53306 19.8947 2.90714L19.7759 2.73227L19.5833 2.64518C18.1437 1.99439 16.6386 1.51826 15.0686 1.25995ZM16.6074 10.7755L16.6074 10.7756C16.5934 11.6409 16.0212 12.1444 15.4783 12.1444C14.9297 12.1444 14.3493 11.6173 14.3493 10.7877C14.3493 9.94885 14.9378 9.41192 15.4783 9.41192C16.0471 9.41192 16.6209 9.93851 16.6074 10.7755ZM8.49373 12.1444C7.94513 12.1444 7.36471 11.6173 7.36471 10.7877C7.36471 9.94885 7.95323 9.41192 8.49373 9.41192C9.06038 9.41192 9.63892 9.93712 9.6417 10.7815C9.62517 11.6239 9.05462 12.1444 8.49373 12.1444Z"
-          strokeWidth="1.5"
-        />
-      </svg>
-    ),
-  },
-];
