@@ -1,6 +1,9 @@
 
+import { useOptionalUser } from "~/utils"
 
 export default function SidebarAdmin() {
+    const user = useOptionalUser()
+
     return (
         <>
         
@@ -15,7 +18,7 @@ export default function SidebarAdmin() {
                         <div className="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div className="ms-3">
-                        <h6 className="mb-0">Jhon Doe</h6>
+                        <h6 className="mb-0">{user.name}</h6>
                         <span>Admin</span>
                     </div>
                 </div>

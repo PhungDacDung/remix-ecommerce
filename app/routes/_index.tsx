@@ -1,6 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import Footer from "~/components/Footer";
 import Navbar from "~/components/Navbar";
+import { useOptionalUser } from "~/utils";
 
 export const meta: MetaFunction = () => {
   return [
@@ -10,7 +11,8 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
-  console.log("home");
+  
+  const user = useOptionalUser();
 
   return (
     <>

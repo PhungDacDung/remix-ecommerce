@@ -1,4 +1,5 @@
 import {
+  json,
   Links,
   Meta,
   Outlet,
@@ -6,15 +7,15 @@ import {
   ScrollRestoration,
   useLocation,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs } from "@remix-run/node";
 
 import "./tailwind.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useEffect } from "react";
-import SidebarAdmin from "./components/admin/SidebarAdmin"  
-import NavbarAdmin from "./components/admin/NavbarAdmin"
+import { getUser } from "./services/session.server";
+
 
 
 export const links: LinksFunction = () => [
@@ -95,6 +96,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </body>
     </html>
   );
+}
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  return json({
+    user: await getUser(request),
+  });
 }
 
 export default function App() {
