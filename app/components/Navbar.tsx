@@ -4,9 +4,10 @@ import { useOptionalUser } from "~/utils";
 
 export default function Navbar() {
     const user = useOptionalUser();
+    //navbar-dark bg-dark
     return (
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark ftco_navbar  ftco-navbar-light" id="ftco-navbar">
+            <nav className="navbar navbar-expand-lg ftco_navbar  ftco-navbar-light" id="ftco-navbar">
                 <div className="container">
                     <a className="navbar-brand" href="/">Minishop</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +37,7 @@ export default function Navbar() {
                 {user ? (
                     <>
                     <span className="mx-3">
-                       Welcome {user.name}
+                       {/* Welcome {user.name} */}
 
                     </span>
                     </>

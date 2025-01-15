@@ -11,6 +11,10 @@ import { useEffect } from "react";
 import NavbarAdmin from "~/components/admin/NavbarAdmin";
 import SidebarAdmin from "~/components/admin/SidebarAdmin";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Bounce, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 // Khai báo CSS và các link stylesheet
 export const links: LinksFunction = () => [
@@ -25,9 +29,10 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: "/admin/css/style.css" },
 ];
 
+
 export default  function AdminLayout({ children }: { children: React.ReactNode }) {
-  console.log("layout");
-  useEffect(() => {
+
+  /* useEffect(() => {
     // Nhúng các script khi layout được render
     const scripts = [
       "/admin/lib/chart/chart.min.js",
@@ -44,7 +49,7 @@ export default  function AdminLayout({ children }: { children: React.ReactNode }
       script.src = src;
       script.async = false; // Đảm bảo các script được thực thi theo thứ tự
       document.body.appendChild(script);
-      script.onload = () => console.log(`Script loaded: ${src}`);
+      // script.onload = () => console.log(`Script loaded: ${src}`);
       return script;
     });
 
@@ -58,7 +63,7 @@ export default  function AdminLayout({ children }: { children: React.ReactNode }
       scriptElements.forEach((script) => document.body.removeChild(script));
       document.body.removeChild(resolveConflictScript);
     };
-  }, []);
+  }, []); */
 
 
   return (
@@ -78,17 +83,27 @@ export default  function AdminLayout({ children }: { children: React.ReactNode }
           {children}
           <Outlet />
           </div>
+        <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+        />
         </div>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
+        {/* <LiveReload /> */}
 
-
-        {/* External Scripts */}
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
-        {/* Local Scripts */}
         <script src="/admin/lib/chart/chart.min.js"></script>
         <script src="/admin/lib/easing/easing.min.js"></script>
         <script src="/admin/lib/waypoints/waypoints.min.js"></script>
@@ -97,7 +112,6 @@ export default  function AdminLayout({ children }: { children: React.ReactNode }
         <script src="/admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
         <script src="/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-        {/* Main Script */}
         <script src="/admin/js/main.js"></script>
 
       </body>
@@ -105,50 +119,3 @@ export default  function AdminLayout({ children }: { children: React.ReactNode }
 
   );
 }
-
-/* export default function App() {
-
-  console.log("Admin layout");
-
-  useEffect(() => {
-    // Nhúng các script khi layout được render
-    const scripts = [
-      "/admin/lib/chart/chart.min.js",
-      "/admin/lib/easing/easing.min.js",
-      "/admin/lib/waypoints/waypoints.min.js",
-      "/admin/lib/owlcarousel/owl.carousel.min.js",
-      "/admin/lib/tempusdominus/js/moment.min.js",
-      "/admin/lib/tempusdominus/js/moment-timezone.min.js",
-      "/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"
-    ];
-
-    const scriptElements = scripts.map((src) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.async = false; // Đảm bảo các script được thực thi theo thứ tự
-      document.body.appendChild(script);
-      script.onload = () => console.log(`Script loaded: ${src}`);
-      return script;
-    });
-
-    // Khắc phục xung đột jQuery UI tooltip với Bootstrap tooltip
-    const resolveConflictScript = document.createElement("script");
-    resolveConflictScript.innerHTML = `$.widget.bridge('uibutton', $.ui.button);`;
-    document.body.appendChild(resolveConflictScript);
-
-    // Cleanup scripts khi component bị hủy
-    return () => {
-      scriptElements.forEach((script) => document.body.removeChild(script));
-      document.body.removeChild(resolveConflictScript);
-    };
-  }, []);
-  return (
-    <div className="container-xxl position-relative bg-white d-flex p-0">
-          <NavbarAdmin />
-          <SidebarAdmin />
-          <Outlet />
-
-        </div>
-  )
-
-} */

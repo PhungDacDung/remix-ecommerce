@@ -9,6 +9,8 @@ export default async function loadAllUser(){
         throw new Error("No have any user!");
         
     }
-
+    
+    console.log("user admin");
+    
     return users;
 }

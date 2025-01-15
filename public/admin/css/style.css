@@ -5,6 +5,13 @@
     --dark: #191C24;
 }
 
+.limited-text:hover {
+    white-space: normal; /* Cho phép xuống dòng khi hover */
+    overflow: auto; /* Hiển thị thanh cuộn khi nội dung dài */
+    max-height: 150px; /* Chiều cao tối đa khi cuộn */
+    display: block;
+  }
+
 .back-to-top {
     position: fixed;
     display: none;

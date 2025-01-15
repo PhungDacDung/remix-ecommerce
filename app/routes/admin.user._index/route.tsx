@@ -4,18 +4,23 @@ import loadAllUser from "./loader.server";
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { requireUserId } from "~/services/session.server";
 
-
 export async function loaderAuth({ request}: LoaderFunctionArgs) {
     await requireUserId(request);
   
     return json({});
 }
 
-export const loader = loadAllUser
+
+export const loader = loadAllUser;
 
 export default function AdminUser() {
 
     const listUser = useLoaderData<typeof loader>();
+
+    console.log("check user route", listUser);
+    // console.log("check  route user");
+    
+    
 
     const handleDelete = (id:number)=>{
 

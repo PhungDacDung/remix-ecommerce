@@ -9,7 +9,7 @@ export default function SidebarAdmin() {
         
         <div className="sidebar pe-4 pb-3">
             <nav className="navbar bg-light navbar-light">
-                <a href="index.html" className="navbar-brand mx-4 mb-3">
+                <a href="/admin" className="navbar-brand mx-4 mb-3">
                     <h3 className="text-primary"><i className="fa fa-hashtag me-2"></i>ADMIN</h3>
                 </a>
                 <div className="d-flex align-items-center ms-4 mb-4">
@@ -18,7 +18,7 @@ export default function SidebarAdmin() {
                         <div className="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div className="ms-3">
-                        <h6 className="mb-0">{user.name}</h6>
+                        {/* <h6 className="mb-0">{user.name}</h6> */}
                         <span>Admin</span>
                     </div>
                 </div>
@@ -27,9 +27,10 @@ export default function SidebarAdmin() {
                     <div className="nav-item dropdown">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Elements</a>
                         <div className="dropdown-menu bg-transparent border-0">
-                            <a href="/admin/user" className="dropdown-item">User</a>
-                            <a href="/admin/product" className="dropdown-item">Product</a>
-                            <a href="/admin/slider" className="dropdown-item">Slider</a>
+                            <a href="/admin/user" className="dropdown-item mt-1">User</a>
+                            <a href="/admin/category" className="dropdown-item mt-1">Category</a>
+                            <a href="/admin/product" className="dropdown-item mt-1">Product</a>
+                            <a href="/admin/slider" className="dropdown-item  mt-1">Slider</a>
                         </div>
                     </div>
                     <a href="widget.html" className="nav-item nav-link"><i className="fa fa-th me-2"></i>Widgets</a>

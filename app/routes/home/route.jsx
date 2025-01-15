@@ -1,6 +1,8 @@
 
 
 export default function Home() {
+    console.log("home");
+    
     return (
         <>
             <section id="home-section" className="hero">

@@ -85,7 +85,7 @@ export default function NavbarAdmin() {
 
                                 {user ? (
                                     <>
-                                        <span className="d-none d-lg-inline-flex">{user.name}</span>
+                                        {/* <span className="d-none d-lg-inline-flex">{user.name}</span> */}
                                     </>
                                 ) : (
                                     <div className="mx-3">

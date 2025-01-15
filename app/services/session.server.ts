@@ -25,9 +25,6 @@ export const commitSession = (session: any) => {
     return storage.commitSession(session);
 };
 
-/* export const destroySession = (session: any) => {
-    return storage.destroySession(session);
-}; */
 
 
 export async function logout(request: Request) {

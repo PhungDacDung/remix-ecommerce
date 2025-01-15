@@ -1,6 +1,7 @@
 import {
   json,
   Links,
+  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -15,6 +16,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useEffect } from "react";
 import { getUser } from "./services/session.server";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -71,7 +73,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
-
+        {/* <LiveReload/> */}
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 
@@ -88,8 +90,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <script src="/js/jquery.animateNumber.min.js"></script>
         <script src="/js/bootstrap-datepicker.js"></script>
         <script src="/js/scrollax.min.js"></script>
-        <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
         <script src="/js/google-map.js"></script>
         <script src="/js/main.js"></script>
 
@@ -98,14 +99,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export async function loader({ request }: LoaderFunctionArgs) {
+/* export async function loader({ request }: LoaderFunctionArgs) {
   return json({
     user: await getUser(request),
   });
-}
+} */
 
 export default function App() {
-  useEffect(() => {
+ /*  useEffect(() => {
     // Load các script của bạn
     const scripts = [
       "/js/jquery.min.js",
@@ -138,6 +139,48 @@ export default function App() {
       // Cleanup: Remove script when component unmounts
       return () => document.body.removeChild(script);
     });
+  }, []); */
+
+   useEffect(() => {
+    // Nhúng các script khi layout được render
+    const scripts = [
+      "/js/jquery.min.js",
+      "/js/jquery-migrate-3.0.1.min.js",
+      "/js/popper.min.js",
+      "/js/bootstrap.min.js",
+      "/js/jquery.easing.1.3.js",
+      "/js/jquery.waypoints.min.js",
+      "/js/jquery.stellar.min.js",
+      "/js/owl.carousel.min.js",
+      "/js/jquery.magnific-popup.min.js",
+      "/js/aos.js",
+      "/js/jquery.animateNumber.min.js",
+      "/js/bootstrap-datepicker.js",
+      "/js/scrollax.min.js",
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false",
+      "/js/google-map.js",
+      "/js/main.js",
+    ];
+
+    const scriptElements = scripts.map((src) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = false; // Đảm bảo các script được thực thi theo thứ tự
+      document.body.appendChild(script);
+      // script.onload = () => console.log(`Script loaded: ${src}`);
+      return script;
+    });
+
+    // Khắc phục xung đột jQuery UI tooltip với Bootstrap tooltip
+    const resolveConflictScript = document.createElement("script");
+    resolveConflictScript.innerHTML = `$.widget.bridge('uibutton', $.ui.button);`;
+    document.body.appendChild(resolveConflictScript);
+
+    // Cleanup scripts khi component bị hủy
+    return () => {
+      scriptElements.forEach((script) => document.body.removeChild(script));
+      document.body.removeChild(resolveConflictScript);
+    };
   }, []);
 
 
