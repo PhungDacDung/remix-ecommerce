@@ -94,3 +94,32 @@ export async function requireUserId(
     }
     return userId;
   }
+
+  // cart session
+
+export async function getCart(request:Request){
+    const session = await storage.getSession(request.headers.get("Cookie"));
+    return session.get("cart") || [];
+}
+
+export async function saveCart(request:Request, cart: any) {
+    const session = await storage.getSession(request.headers.get("Cookie"));
+    session.set("cart",cart);
+    return new Response(null,{
+        headers:{
+            "Set-Cookie": await storage.commitSession(session),
+        },
+    });
+    
+}
+
+export async function clearCart(request: Request) {
+    const session = await storage.getSession(request.headers.get("Cookie"));
+    session.unset("cart"); // Xóa giỏ hàng khỏi session
+    return new Response(null, {
+      headers: {
+        "Set-Cookie": await storage.commitSession(session),
+      },
+    });
+  }
+  

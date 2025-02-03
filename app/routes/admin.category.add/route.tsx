@@ -3,8 +3,6 @@ import AdminLayout from "~/layouts/AdminLayout";
 import ActionCategory from "../admin.category._index/action.server";
 import { useEffect } from "react";
 import type { ActionRespone } from "~/utils/responseTypes";
-
-
 import { toast } from "react-toastify";
 
 /* import { loaderAuth } from "~/services/auth.server";

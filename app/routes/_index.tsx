@@ -1,9 +1,41 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useOptionalUser } from "~/utils";
-import loadAllSlider from "./admin.slider._index/loader.server";
-import { useLoaderData } from "@remix-run/react";
+import { json, useLoaderData, Form, useActionData } from "@remix-run/react";
+import prisma from "~/client"
+import ActionCart from "./cart/action.server";
+import { ActionRespone } from "~/utils/responseTypes";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
-export const loader = loadAllSlider
+
+
+export const action = ActionCart;
+
+export async function loader() {
+  const sliders = await prisma.slider.findMany({});
+
+  if (!sliders) {
+    throw new Error("No have any slider!");
+  }
+
+  const products = await prisma.product.findMany({
+    include: {
+      Category: true,
+    },
+  });
+
+  if (!products) {
+    throw new Error("No have any product!");
+  }
+
+  const productImg = await prisma.product_image.findMany({})
+
+
+  return json({
+    sliders, products, productImg
+  });
+
+}
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,13 +47,28 @@ export const meta: MetaFunction = () => {
 export default function Index() {
 
   const user = useOptionalUser();
-  const listSlider = useLoaderData<typeof loader>()
+  const { sliders: listSlider, products, productImg } = useLoaderData<typeof loader>()
+  const actionData = useActionData<ActionRespone>();
+  
+  useEffect(()=>{
+    if(actionData){
+      if(actionData?.success){
+        console.log("check action data", actionData);
+        
+        toast.success(actionData.message);
+      }
+    }
+    
+  },[actionData])
+
+
 
   return (
     <>
       <section id="home-section" className="hero">
         <div className="home-slider owl-carousel">
           {listSlider && listSlider.length > 0 && listSlider.map((item: any) => {
+
             return (
               <div className="slider-item js-fullheight">
                 <div className="overlay"></div>
@@ -127,41 +174,65 @@ export default function Index() {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
-              <div className="product d-flex flex-column">
-                <a href="/product/detail/1" className="img-prod"><img className="img-fluid" src="images/product-1.png"
-                  alt="Colorlib Template" />
-                  <div className="overlay"></div>
-                </a>
-                <div className="text py-3 pb-4 px-3">
-                  <div className="d-flex">
-                    <div className="cat">
-                      <span>Lifestyle</span>
-                    </div>
-                    <div className="rating">
-                      <p className="text-right mb-0">
-                        <a href="#"><span className="ion-ios-star-outline"></span></a>
-                        <a href="#"><span className="ion-ios-star-outline"></span></a>
-                        <a href="#"><span className="ion-ios-star-outline"></span></a>
-                        <a href="#"><span className="ion-ios-star-outline"></span></a>
-                        <a href="#"><span className="ion-ios-star-outline"></span></a>
-                      </p>
+            {products && products.length > 0 && products.map((item: any) => {
+              let imgItem = productImg.find((img) => {
+                return img.productId === item.id
+              })
+              if (imgItem) {
+                return (
+                  <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+                    <div className="product d-flex flex-column">
+                      <a href={`/product/detail/${item.id}`} className="img-prod"><img className="img-fluid" src={imgItem.path}
+                        alt="Colorlib Template" />
+                        <div className="overlay"></div>
+                      </a>
+                      <div className="text py-3 pb-4 px-3">
+                        <div className="d-flex">
+                          <div className="cat">
+                            <span>Lifestyle</span>
+                          </div>
+                          <div className="rating">
+                            <p className="text-right mb-0">
+                              <a href="#"><span className="ion-ios-star-outline"></span></a>
+                              <a href="#"><span className="ion-ios-star-outline"></span></a>
+                              <a href="#"><span className="ion-ios-star-outline"></span></a>
+                              <a href="#"><span className="ion-ios-star-outline"></span></a>
+                              <a href="#"><span className="ion-ios-star-outline"></span></a>
+                            </p>
+                          </div>
+                        </div>
+                        <h3><a href="/product/detail/1">{item.name}</a></h3>
+                        <div className="pricing">
+                          <p className="price"><span>{item.price}</span></p>
+                        </div>
+                        <p className="bottom-area d-flex px-3">
+                          <a className="add-to-cart text-center py-2 mr-1">
+                          <Form method="post" >
+                            <input type="hidden" name="id" value={item.id} />
+                            <input type="hidden" name="name" value={item.name} />
+                            <input type="hidden" name="description" value={item.description} />
+                            <input type="hidden" name="price" value={item.price} />
+                            <input type="hidden" name="quantity" value={1} />
+                            <input type="hidden" name="categoryId" value={item.categoryId} />
+                            <input type="hidden" name="productImg" value={imgItem.path} />
+                            <input type="hidden" name="action" value={"add"} />
+
+
+                            <button type="submit"  className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
+                              className="ion-ios-add ml-1"></i></span></button>
+                          </Form>
+
+                          </a>
+                          <a href="#" className="buy-now text-center py-2">Buy now<span><i
+                            className="ion-ios-cart ml-1"></i></span></a>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <h3><a href="/product/detail/1">Nike Free RN 2019 iD</a></h3>
-                  <div className="pricing">
-                    <p className="price"><span>$120.00</span></p>
-                  </div>
-                  <p className="bottom-area d-flex px-3">
-                    <a href="/cart" className="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
-                      className="ion-ios-add ml-1"></i></span></a>
-                    <a href="#" className="buy-now text-center py-2">Buy now<span><i
-                      className="ion-ios-cart ml-1"></i></span></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
+                )
+              }
+            })}
+            {/*  <div className="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
               <div className="product d-flex flex-column">
                 <a href="/product/detail/1" className="img-prod"><img className="img-fluid" src="images/product-2.png"
                   alt="Colorlib Template" />
@@ -403,7 +474,7 @@ export default function Index() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

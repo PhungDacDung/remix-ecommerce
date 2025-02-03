@@ -3,11 +3,11 @@ import AdminLayout from "../../layouts/AdminLayout"
 import { requireUserId } from "~/services/session.server";
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 
-export async function loader({ request}: LoaderFunctionArgs) {
+/* export async function loader({ request}: LoaderFunctionArgs) {
     await requireUserId(request);
   
     return json({});
-}
+} */
 
 export default function Admin() {
 

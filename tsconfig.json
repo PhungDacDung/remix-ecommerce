@@ -6,7 +6,7 @@
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
     "**/.client/**/*.tsx"
-, "app/components/admin/SidebarAdmin.jsx", "app/components/admin/NavbarAdmin.jsx"  ],
+, "app/components/admin/SidebarAdmin.jsx", "app/components/admin/NavbarAdmin.jsx", "app/routes/product.detail.$id/route.jsx"  ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "types": ["@remix-run/node", "vite/client"],

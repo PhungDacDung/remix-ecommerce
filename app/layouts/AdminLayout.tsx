@@ -32,7 +32,7 @@ export const links: LinksFunction = () => [
 
 export default  function AdminLayout({ children }: { children: React.ReactNode }) {
 
-  /* useEffect(() => {
+  useEffect(() => {
     // Nhúng các script khi layout được render
     const scripts = [
       "/admin/lib/chart/chart.min.js",
@@ -63,7 +63,7 @@ export default  function AdminLayout({ children }: { children: React.ReactNode }
       scriptElements.forEach((script) => document.body.removeChild(script));
       document.body.removeChild(resolveConflictScript);
     };
-  }, []); */
+  }, []);
 
 
   return (

@@ -9,7 +9,7 @@ export const loadEditCategory:LoaderFunction = async ({request, params}) =>{
             const category = await prisma.category.findFirst({
                 where: {id:parseInt(params?.id)}
             })
-           
+            
             return category;
         }    
 

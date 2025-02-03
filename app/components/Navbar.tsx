@@ -37,7 +37,7 @@ export default function Navbar() {
                 {user ? (
                     <>
                     <span className="mx-3">
-                       {/* Welcome {user.name} */}
+                       Welcome {user.name}
 
                     </span>
                     </>

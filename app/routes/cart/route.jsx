@@ -1,5 +1,21 @@
+import { json } from "@remix-run/node";
+import { getCart } from "../../services/session.server"
+import { useLoaderData } from "@remix-run/react";
+
+
+export async function loader({ request }) {
+    const cart = await getCart(request);
+    return json(cart);
+}
 
 export default function Cart() {
+
+    const listCart = useLoaderData();
+    let subtotal = listCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    let delivery = subtotal > 50 ? 0 : 5; // Miễn phí nếu > 50$
+    let discount = subtotal >= 20 ? 3 : 0; // Giảm 3$ nếu > 20$
+    let total = subtotal + delivery - discount;
+
     return (
         <>
             <div class="hero-wrap hero-bread" style={{ backgroundImage: "url('/images/bg_6.jpg')" }}>
@@ -30,47 +46,32 @@ export default function Cart() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="text-center">
-                                            <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+                                        {listCart && listCart.length > 0 && listCart.map((item) => {
+                                            return (
+                                                <tr class="text-center">
+                                                    <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 
-                                            <td class="image-prod"><div class="img" style={{ backgroundImage: "url('/images/product-1.jpg')" }}></div></td>
+                                                    <td class="image-prod"><div class="img" style={{ backgroundImage: `url(${item.productImg})` }}></div></td>
 
-                                            <td class="product-name">
-                                                <h3>Nike Free RN 2019 iD</h3>
-                                                <p>Far far away, behind the word mountains, far from the countries</p>
-                                            </td>
+                                                    <td class="product-name">
+                                                        <h3>{item.name}</h3>
+                                                        <p>Far far away, behind the word mountains, far from the countries</p>
+                                                    </td>
 
-                                            <td class="price">$4.90</td>
+                                                    <td class="price">$ {item.price}</td>
 
-                                            <td class="quantity">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100"/>
-                                                </div>
-                                            </td>
+                                                    <td class="quantity">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" name="quantity" class="quantity form-control input-number" value={item.quantity} min="1" max="100" />
+                                                        </div>
+                                                    </td>
 
-                                            <td class="total">$4.90</td>
-                                        </tr>
+                                                    <td class="total">$ {item.quantity * item.price}</td>
+                                                </tr>
+                                            )
+                                        })}
 
-                                        <tr class="text-center">
-                                            <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 
-                                            <td class="image-prod"><div class="img" style={{ backgroundImage: "url('/images/product-4.jpg')" }}></div></td>
-
-                                            <td class="product-name">
-                                                <h3>Nike Free RN 2019 iD</h3>
-                                                <p>Far far away, behind the word mountains, far from the countries</p>
-                                            </td>
-
-                                            <td class="price">$15.70</td>
-
-                                            <td class="quantity">
-                                                <div class="input-group mb-3">
-                                                    <input type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100"/>
-                                                </div>
-                                            </td>
-
-                                            <td class="total">$15.70</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -78,25 +79,26 @@ export default function Cart() {
                     </div>
                     <div class="row justify-content-start">
                         <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
+                            
                             <div class="cart-total mb-3">
                                 <h3>Cart Totals</h3>
                                 <p class="d-flex">
                                     <span>Subtotal</span>
-                                    <span>$20.60</span>
+                                    <span>${subtotal.toFixed(2)}</span>
                                 </p>
                                 <p class="d-flex">
                                     <span>Delivery</span>
-                                    <span>$0.00</span>
+                                    <span>${delivery.toFixed(2)}</span>
                                 </p>
                                 <p class="d-flex">
                                     <span>Discount</span>
-                                    <span>$3.00</span>
+                                    <span>${discount.toFixed(2)}</span>
                                 </p>
-                                <hr/>
-                                    <p class="d-flex total-price">
-                                        <span>Total</span>
-                                        <span>$17.60</span>
-                                    </p>
+                                <hr />
+                                <p class="d-flex total-price">
+                                    <span>Total</span>
+                                    <span>${total.toFixed(2)}</span>
+                                </p>
                             </div>
                             <p class="text-center"><a href="/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
                         </div>

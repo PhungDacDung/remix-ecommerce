@@ -18,14 +18,14 @@ export default function SidebarAdmin() {
                         <div className="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div className="ms-3">
-                        {/* <h6 className="mb-0">{user.name}</h6> */}
+                        <h6 className="mb-0">{user.name}</h6>
                         <span>Admin</span>
                     </div>
                 </div>
                 <div className="navbar-nav w-100">
                     <a href="/admin" className="nav-item nav-link"><i className="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div className="nav-item dropdown">
-                        <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Elements</a>
+                        <a href="#" className="active nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="fa fa-laptop me-2"></i>Elements</a>
                         <div className="dropdown-menu bg-transparent border-0">
                             <a href="/admin/user" className="dropdown-item mt-1">User</a>
                             <a href="/admin/category" className="dropdown-item mt-1">Category</a>
@@ -35,7 +35,7 @@ export default function SidebarAdmin() {
                     </div>
                     <a href="widget.html" className="nav-item nav-link"><i className="fa fa-th me-2"></i>Widgets</a>
                     <a href="form.html" className="nav-item nav-link"><i className="fa fa-keyboard me-2"></i>Forms</a>
-                    <a href="table.html" className="nav-item nav-link active"><i className="fa fa-table me-2"></i>Tables</a>
+                    <a href="table.html" className="nav-item nav-link "><i className="fa fa-table me-2"></i>Tables</a>
                     <a href="chart.html" className="nav-item nav-link"><i className="fa fa-chart-bar me-2"></i>Charts</a>
                     <div className="nav-item dropdown">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i className="far fa-file-alt me-2"></i>Pages</a>

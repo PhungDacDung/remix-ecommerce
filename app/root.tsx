@@ -17,6 +17,8 @@ import Footer from "./components/Footer";
 import { useEffect } from "react";
 import { getUser } from "./services/session.server";
 import 'react-toastify/dist/ReactToastify.css';
+import { Bounce, ToastContainer} from 'react-toastify';
+
 
 
 
@@ -99,11 +101,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   return json({
     user: await getUser(request),
   });
-} */
+}
 
 export default function App() {
  /*  useEffect(() => {
@@ -189,18 +191,24 @@ export default function App() {
 
   return (
     <>
-    
-
       {!isAdminRoute && <Navbar/>}
       <Outlet/>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+        />
       {!isAdminRoute && <Footer/>}
-      
-      {/* {isAdminRoute && <NavbarAdmin/>}
-      {isAdminRoute && <SidebarAdmin/>}
-      <Outlet/> */}
-      
 
-
+  
       {/* Loading */}
 
       <div id="ftco-loader" className="show fullscreen"><svg className="circular" width="48px" height="48px">
